@@ -1,21 +1,25 @@
-import { useContext } from 'react'
+import { Link } from "react-router-dom";
 
-import { CartContext } from '../../contexts/cart.context'
+import { useContext } from 'react';
 
-import Button from '../button/button.component'
+import { CartContext } from '../../contexts/cart.context';
 
-import CartItem from '../cart-item/cart-item.component'
+import Button from '../button/button.component';
 
-import './cart-dropdown.styles.scss'
+import CartItem from '../cart-item/cart-item.component';
 
-const CartDropdown = () =>{
-    const {cartItems} = useContext(CartContext);
+import './cart-dropdown.styles.scss';
+
+const CartDropdown = () => {
+    const { cartItems} = useContext(CartContext);
     return (
-        <div className = 'cart-dropdown-container'>
-            <div className='cart-items'> 
-                { cartItems.map(item=> <CartItem key = {item.id} cartItem = {item} />)}
+        <div className='cart-dropdown-container'>
+            <div className='cart-items'>
+                {cartItems.map(item => <CartItem key={item.id} cartItem={item} />)}
             </div>
-            <Button> Go To Checkout </Button>
+            <Link to='/checkout'>
+            <Button > Go To Checkout </Button>
+            </Link>
         </div>
     )
 }
